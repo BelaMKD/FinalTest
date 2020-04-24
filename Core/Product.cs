@@ -12,6 +12,7 @@ namespace Core
         public string Name { get; set; }
         [Required]
         public double Price { get; set; }
+        [Required]
         public int ddvId { get; set; }
         public DDV DDV { get; set; }
         public int TaxPayerId { get; set; }

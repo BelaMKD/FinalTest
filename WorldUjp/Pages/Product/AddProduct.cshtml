@@ -33,6 +33,8 @@
             <select id="dropDown" asp-for="@Model.Product.ddvId" asp-items="@Model.DDVs" class="form-control">
                 <option value="">Pick a DDV</option>
             </select>
+            <span class="text-danger" asp-validation-for="@Model.Product.ddvId"></span>
+
         </div>
     </div>
 
