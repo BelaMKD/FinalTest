@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(UjpDbContext))]
-    [Migration("20200424171033_Start")]
+    [Migration("20200424183901_Start")]
     partial class Start
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -104,7 +104,7 @@ namespace Data.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int?>("TaxPayerId")
+                    b.Property<int>("TaxPayerId")
                         .HasColumnType("int");
 
                     b.Property<int>("ddvId")
@@ -116,7 +116,7 @@ namespace Data.Migrations
 
                     b.HasIndex("ddvId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Core.TaxPayer", b =>
@@ -224,9 +224,11 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Core.Product", b =>
                 {
-                    b.HasOne("Core.TaxPayer", null)
+                    b.HasOne("Core.TaxPayer", "TaxPayer")
                         .WithMany("Products")
-                        .HasForeignKey("TaxPayerId");
+                        .HasForeignKey("TaxPayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Core.DDV", "DDV")
                         .WithMany()

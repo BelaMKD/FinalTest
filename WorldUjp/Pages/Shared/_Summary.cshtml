@@ -1,0 +1,9 @@
+﻿@using Core
+@model Product
+
+<tr>
+    <td>@Model.Name</td>
+    <td>@Model.Price.ToString("C")</td>
+    <td>@Model.DDV.Tax.ToString("P")
+    <td>
+</tr>

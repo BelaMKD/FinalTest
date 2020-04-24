@@ -102,7 +102,7 @@ namespace Data.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<int?>("TaxPayerId")
+                    b.Property<int>("TaxPayerId")
                         .HasColumnType("int");
 
                     b.Property<int>("ddvId")
@@ -114,7 +114,7 @@ namespace Data.Migrations
 
                     b.HasIndex("ddvId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Core.TaxPayer", b =>
@@ -222,9 +222,11 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Core.Product", b =>
                 {
-                    b.HasOne("Core.TaxPayer", null)
+                    b.HasOne("Core.TaxPayer", "TaxPayer")
                         .WithMany("Products")
-                        .HasForeignKey("TaxPayerId");
+                        .HasForeignKey("TaxPayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Core.DDV", "DDV")
                         .WithMany()

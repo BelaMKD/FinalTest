@@ -27,10 +27,13 @@ namespace WorldUjp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddMvc().AddRazorRuntimeCompilation();
+
             services.AddDbContextPool<UjpDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("db")));
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IDDVRepository, DDVRepository>();
             services.AddScoped<ITaxPayerRepository, TaxPayerRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

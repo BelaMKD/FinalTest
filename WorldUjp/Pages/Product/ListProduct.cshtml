@@ -1,0 +1,31 @@
+﻿@page
+@model WorldUjp.Pages.Product.ListProductModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Products</h1>
+
+<partial name="TaxPayerFL" model="Model.TaxPayer" />
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.TaxPayer.Products)
+        {
+
+            <partial name="_Summary" model="product" />
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-primary" asp-page="./AddProduct" asp-route-id="@Model.TaxPayer.Id">Add Product</a>

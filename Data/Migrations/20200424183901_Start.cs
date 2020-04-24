@@ -55,7 +55,7 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -63,19 +63,19 @@ namespace Data.Migrations
                     Name = table.Column<string>(nullable: true),
                     Price = table.Column<double>(nullable: false),
                     ddvId = table.Column<int>(nullable: false),
-                    TaxPayerId = table.Column<int>(nullable: true)
+                    TaxPayerId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Product_TaxPayers_TaxPayerId",
+                        name: "FK_Products_TaxPayers_TaxPayerId",
                         column: x => x.TaxPayerId,
                         principalTable: "TaxPayers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Product_DDVs_ddvId",
+                        name: "FK_Products_DDVs_ddvId",
                         column: x => x.ddvId,
                         principalTable: "DDVs",
                         principalColumn: "Id",
@@ -121,13 +121,13 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_TaxPayerId",
-                table: "Product",
+                name: "IX_Products_TaxPayerId",
+                table: "Products",
                 column: "TaxPayerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_ddvId",
-                table: "Product",
+                name: "IX_Products_ddvId",
+                table: "Products",
                 column: "ddvId");
 
             migrationBuilder.CreateIndex(
@@ -139,7 +139,7 @@ namespace Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Product");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "TaxPayers");

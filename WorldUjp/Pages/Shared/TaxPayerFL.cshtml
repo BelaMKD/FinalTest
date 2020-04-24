@@ -1,0 +1,11 @@
+﻿@using Core
+@model TaxPayer
+
+    <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="@Model.FirstName" asp-for="@Model.FirstName" readonly>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="@Model.LastName" asp-for="@Model.LastName" readonly>
+        </div>
+    </div>
